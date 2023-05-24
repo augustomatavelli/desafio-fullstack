@@ -4,7 +4,7 @@ import { AppDataSource } from "../data-source";
 import { User } from "../entities";
 import { AppError } from "../errors";
 
-export const verifyEmailExistsMiddleware = async(req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const verifyEmailExistsMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
 
     if(req.body.email){

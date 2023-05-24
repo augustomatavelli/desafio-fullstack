@@ -1,5 +1,5 @@
-import express, { Application } from 'express'
 import 'express-async-errors'
+import express, { Application } from 'express'
 import { userRoutes } from './routes/users.routes'
 import { handleErrors } from './errors'
 import { loginRoutes } from './routes/login.routes'
@@ -10,7 +10,7 @@ app.use(express.json())
 
 app.use('/users', userRoutes)
 app.use('/login', loginRoutes)
-app.use('/contact', contactRoutes)
+app.use('/contacts', contactRoutes)
 
 app.use(handleErrors)
 

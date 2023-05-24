@@ -14,9 +14,6 @@ export class Contact {
     email: string;
 
     @Column()
-    password: string;
-
-    @Column()
     phone: string;
 
     @CreateDateColumn({type: 'date'})

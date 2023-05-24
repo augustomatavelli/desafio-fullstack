@@ -9,7 +9,9 @@ export const userSerializer = z.object({
 
 export const userSerializerResponse = userSerializer.extend({
     id: z.string(),
-    createdAt: z.string()
+    createdAt: z.string(),
+    updatedAt: z.string(),
+	deletedAt: z.string().nullable(),
 }).omit({
     password: true
 })
