@@ -1,2 +1,3 @@
 import { User } from "./users.entities";
-export { User }
+import { Contact } from "./contacts.entities";
+export { User, Contact }
