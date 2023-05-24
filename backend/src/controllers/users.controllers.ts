@@ -4,6 +4,7 @@ import { TUpdadeUser, TUser } from "../interfaces/users.interfaces";
 import { listAllUserService } from "../services/users/listAllUsers.services";
 import { updateUserService } from "../services/users/updateUser.services";
 import { deleteUserService } from "../services/users/deleteUser.services";
+import { listUserService } from "../services/users/listUser.services";
 
 export const createUserController = async (req: Request, res: Response): Promise<Response> => {
     const data: TUser = req.body
@@ -17,6 +18,14 @@ export const listAllUserController = async (req: Request, res: Response): Promis
     const users = await listAllUserService()
 
     return res.json(users)
+}
+
+export const listUserController = async(req: Request, res: Response): Promise<Response> => {
+    const userId = req.params.id
+    const user = await listUserService(userId)
+
+    return res.json(user)
+
 }
 
 export const updateUserController = async (req: Request, res: Response): Promise<Response> => {
