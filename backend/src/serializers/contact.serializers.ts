@@ -9,6 +9,8 @@ export const contactSerializer = z.object({
 export const contactSerializerResponse = contactSerializer.extend({
     id: z.string(),
     createdAt: z.string(),
+    updatedAt: z.string(),
+	deletedAt: z.string().nullable()
 })
 
 export const allContactSerializerResponse = contactSerializerResponse.array()

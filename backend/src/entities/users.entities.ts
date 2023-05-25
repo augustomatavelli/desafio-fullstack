@@ -28,6 +28,9 @@ export class User {
 	@DeleteDateColumn({ type: 'date' })
 	deletedAt: string;
 
+    @OneToMany(() => Contact, (contact) => contact.user)
+    contacts: Contact[]
+
     @BeforeInsert()
     @BeforeUpdate()
     hashPassword(){
@@ -37,6 +40,4 @@ export class User {
         }
     }
 
-    @OneToMany(() => Contact, (contact) => contact.user)
-    contacts: Contact[]
 }
