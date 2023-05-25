@@ -8,6 +8,5 @@ export const deleteUserService = async (id: string) => {
     const user = await userRepository.findOneBy({
         id: id
     })
-    console.log(user)
     await userRepository.softRemove(user!)
 }
