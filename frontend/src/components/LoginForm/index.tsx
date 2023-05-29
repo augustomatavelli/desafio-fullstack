@@ -5,8 +5,13 @@ import {loginSerializer} from '../../pages/Login/serializer'
 import { StyledLoginForm } from "./styles"
 import { StyledInputs } from "../../styles/inputs"
 import { StyledButtonForm } from "../../styles/buttons"
+import { useContext } from "react"
+import { UserContext } from "../../contexts/UserContext"
+import { LoginToRegister } from "../LoginToRegister"
 
 export const LoginForm = () => {
+    const { loginFunction } = useContext(UserContext);
+
     const { register, handleSubmit, formState:{ errors } } = useForm<TLoginData>({
         mode: "onChange",
         resolver: zodResolver(loginSerializer)
@@ -14,7 +19,7 @@ export const LoginForm = () => {
     return (
         <main>
             <h2>Login</h2>
-            <StyledLoginForm onSubmit={handleSubmit()}>
+            <StyledLoginForm onSubmit={handleSubmit(loginFunction)}>
                 <label htmlFor="email">Email</label>
                 <StyledInputs type="email" id="email" placeholder="Digite o seu email..." {...register('email')} />
                 {errors.email?.message && <p>{errors.email.message}</p>}
@@ -25,6 +30,7 @@ export const LoginForm = () => {
 
                 <StyledButtonForm type="submit">Entrar</StyledButtonForm>
             </StyledLoginForm>
+            <LoginToRegister />
         </main>
         )
 }

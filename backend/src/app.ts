@@ -7,10 +7,13 @@ import { contactRoutes } from './routes/contacts.routes'
 
 const app: Application = express()
 app.use(express.json())
+var cors = require('cors');
+app.use(cors())
 
 app.use('/users', userRoutes)
 app.use('/login', loginRoutes)
 app.use('/contacts', contactRoutes)
+
 
 app.use(handleErrors)
 
