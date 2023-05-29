@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,12 +13,23 @@ export const Container = styled.div`
   main {
     display: flex;
     height: 100vh;
-    gap: 3rem;
+    gap: 6rem;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     margin: 0 auto;
     border-radius: 4px;
+  }
+
+  main > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;
+  }
+
+  main > div > img {
+    height: 20rem;
   }
 
   @media (max-width: 1000px) {

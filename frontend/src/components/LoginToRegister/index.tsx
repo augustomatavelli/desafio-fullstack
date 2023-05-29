@@ -6,7 +6,7 @@ export const LoginToRegister = () => {
       <span>
         Crie sua conta!
       </span>
-      <Link to="/register">Cadastrar</Link>
+      <Link to="/register">Cadastro</Link>
     </div>
   );
 };

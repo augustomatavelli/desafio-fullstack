@@ -17,9 +17,9 @@ export const RegisterForm = () => {
         resolver: zodResolver(registerSerializer)
     })
     return (
-        <main>
-            <h2>Cadastro</h2>
+        <>
             <StyledRegisterForm onSubmit={handleSubmit(registerFunction)}>
+                <h2>Cadastro</h2>
                 <label htmlFor="name">Nome</label>
                 <StyledInputs type="text" id="name" placeholder="Digite o seu nome..." {...register('name')} />
                 {errors.name?.message && <p>*{errors.name.message}</p>}
@@ -38,6 +38,6 @@ export const RegisterForm = () => {
 
                 <StyledButtonForm type="submit">Cadastrar</StyledButtonForm>
             </StyledRegisterForm>
-        </main>
+        </>
         )
 }

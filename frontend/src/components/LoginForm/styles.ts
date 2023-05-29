@@ -10,6 +10,12 @@ export const StyledLoginForm = styled.form`
   padding: 1.5rem;
   width: 50%;
 
+  h2 {
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 3rem;
+  }
+
   p {
     color: red;
     font-size: 0.875rem;
@@ -25,16 +31,16 @@ export const StyledLoginForm = styled.form`
 
   div span {
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 2rem;
     color: var(--color-grey-600);
     text-align: center;
   }
 
   div a {
-    background-color: var(--color-grey-0);
+    background-color: #0B6E4F;
     padding: 0.75rem;
     border-radius: 8px;
-    color: var(--color-grey-300);
+    color: var(--color-grey-0);
     transition: 0.4s;
     border: none;
     width: 100%;
@@ -45,7 +51,7 @@ export const StyledLoginForm = styled.form`
   }
 
   div a:hover {
-    background-color: var(--color-grey-300);
+    background-color: #6BBF59;
     color: var(--color-grey-100);
   }
 

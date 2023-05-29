@@ -17,9 +17,9 @@ export const LoginForm = () => {
         resolver: zodResolver(loginSerializer)
     })
     return (
-        <main>
-            <h2>Login</h2>
+        <>
             <StyledLoginForm onSubmit={handleSubmit(loginFunction)}>
+            <h2>Login</h2>
                 <label htmlFor="email">Email</label>
                 <StyledInputs type="email" id="email" placeholder="Digite o seu email..." {...register('email')} />
                 {errors.email?.message && <p>{errors.email.message}</p>}
@@ -29,8 +29,8 @@ export const LoginForm = () => {
                 {errors.password?.message && <p>{errors.password.message}</p>}
 
                 <StyledButtonForm type="submit">Entrar</StyledButtonForm>
+                <LoginToRegister />
             </StyledLoginForm>
-            <LoginToRegister />
-        </main>
+        </>
         )
 }

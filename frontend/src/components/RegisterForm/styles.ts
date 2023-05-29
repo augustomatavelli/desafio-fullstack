@@ -10,6 +10,12 @@ export const StyledRegisterForm = styled.form`
   padding: 1.5rem;
   width: 50%;
 
+  h2 {
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 3rem;
+  }
+
   p {
     color: red;
     font-size: 0.875rem;
