@@ -7,13 +7,13 @@ import { StyledButtonProfile } from "../../styles/buttons";
 import { SlLogout } from 'react-icons/sl'
 
 export const UserProfile = () => {
-    const { profile } = useContext(UserContext);
+    const { profile, Logout } = useContext(UserContext);
 
     return (
         <StyledProfileInfo>
             <div>
                 <CgProfile size={80} />
-                <StyledButtonProfile><SlLogout />   Logout</StyledButtonProfile>
+                <StyledButtonProfile onClick={Logout}><SlLogout />   Logout</StyledButtonProfile>
             </div>
             <div>
                 <h1>{profile?.name}</h1>

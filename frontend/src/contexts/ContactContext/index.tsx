@@ -37,7 +37,7 @@ export const ContactProvider = ({children}: IContactProps) => {
       }, [setLoading, Logout]);
 
     return (
-        <ContactContext.Provider value={{contacts}}>
+        <ContactContext.Provider value={{contacts, setFilteredContacts, filteredContacts}}>
             {children}
         </ContactContext.Provider>
     )

@@ -5,8 +5,9 @@ export interface IContactProps {
 }
 
 export interface IContactProviderData {
-    contacts: IContact[] | []
-
+    contacts: IContact[] | [];
+    setFilteredContacts: React.Dispatch<React.SetStateAction<IContact[] | []>>;
+    filteredContacts: IContact[] | []
 }
 
 export interface IContact {

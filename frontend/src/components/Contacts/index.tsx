@@ -1,9 +1,14 @@
-import { Container } from "../../styles/container"
+import { StyledNoContactMessage } from "./style"
+import { ImSad } from 'react-icons/im'
 
-export const Contacts = () => {
+export const NoContactsMessage = () => {
     return (
-        <Container>
-            <h2>Lista de Contatos</h2>
-        </Container>
+        <StyledNoContactMessage>
+            <div>
+                <h2>Você ainda não possui nenhum contato...</h2>
+                <ImSad size={50}/>
+            </div>
+            <h4>Clique no botão acima e cadastre!!</h4>
+        </StyledNoContactMessage>
     )
 }
