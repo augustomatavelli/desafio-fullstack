@@ -5,18 +5,18 @@ export interface IUserProps {
 }
 
 export interface IUserProviderData {
-    user: IUserData | null;
-    setUser: React.Dispatch<React.SetStateAction<IUserData | null>>;
+    id: IUserId | null;
+    setId: React.Dispatch<React.SetStateAction<IUserId | null>>;
     loading: boolean;
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-    saveLocalStorage: (token: string) => void;
+    saveLocalStorage: (token: string, id: string) => void;
     registerFunction: (data: IRegisterUser) => Promise<void>;
     loginFunction: (data: ILoginUser) => Promise<void>;
+    profile: IUser | null;
 }
 
-export interface IUserData {
-    token: string;
-    user: IUser;
+export interface IUserId {
+    id: string;
 }
 
 export interface IUser {

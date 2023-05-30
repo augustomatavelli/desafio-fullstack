@@ -1,5 +1,9 @@
+import { UserProfile } from "../../components/Profile"
+
 export const Dashboard = () => {
-    return (<div>
-        <p>Olá</p>
-    </div>)
+    return (
+        <div>
+            <UserProfile />
+        </div>
+    )
 }

@@ -5,6 +5,7 @@ import { handleErrors } from './errors'
 import { loginRoutes } from './routes/login.routes'
 import { contactRoutes } from './routes/contacts.routes'
 
+
 const app: Application = express()
 app.use(express.json())
 var cors = require('cors');
