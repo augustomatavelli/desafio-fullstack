@@ -13,6 +13,7 @@ export interface IUserProviderData {
     registerFunction: (data: IRegisterUser) => Promise<void>;
     loginFunction: (data: ILoginUser) => Promise<void>;
     profile: IUser | null;
+    Logout: () => void;
 }
 
 export interface IUserId {

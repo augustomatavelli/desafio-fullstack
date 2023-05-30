@@ -10,7 +10,7 @@ export const ContactProvider = ({children}: IContactProps) => {
 
     const [contacts, setContacts] = useState<IContact[] | []>([])
     const [filteredContacts, setFilteredContacts] = useState<IContact[] | []>([]);
-    const { setLoading } = useContext(UserContext);
+    const { setLoading, Logout } = useContext(UserContext);
 
     useEffect(() => {
         async function getContacts() {
@@ -24,17 +24,17 @@ export const ContactProvider = ({children}: IContactProps) => {
                 api.defaults.headers.common.authorization = `Bearer ${token}`;
                 const request = await api.get("/contacts");
                 const response = await request.data;
-                console.log(response)
                 setContacts(response);
             } catch (err) {
                 toast.error("Ops...Algo deu errado!");
+                Logout()
             } finally {
                 setLoading(false);
             }
           }
         }
         getContacts();
-      }, []);
+      }, [setLoading, Logout]);
 
     return (
         <ContactContext.Provider value={{contacts}}>
