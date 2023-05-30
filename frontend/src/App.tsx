@@ -3,6 +3,7 @@ import { GlobalStyle } from "./styles/global";
 import "react-toastify/dist/ReactToastify.css";
 import { MainRoutes as Routes } from "./routes";
 import { UserProvider } from "./contexts/UserContext";
+import { ContactProvider } from "./contexts/ContactContext";
 
 function App() {
   return (
@@ -20,7 +21,9 @@ function App() {
         theme="light"
       />
       <UserProvider>
-        <Routes />
+        <ContactProvider>
+          <Routes />
+        </ContactProvider>
       </UserProvider>
     </>
   );
