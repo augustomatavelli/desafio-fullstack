@@ -6,10 +6,15 @@ import { StyledContactInfo, StyledContactsContainer, StyledContactsList } from "
 import { IoMdContacts } from 'react-icons/io'
 import { AiOutlineMail } from 'react-icons/ai'
 import { FiPhone } from 'react-icons/fi'
+import { UserContext } from "../../contexts/UserContext"
+import { ModalCreateContact } from "../../components/ModalCreateContact"
+import { ModalEditContact } from "../../components/ModalEditContact"
+import { ModalEditProfile } from "../../components/ModalEditProfile"
 
 export const Dashboard = () => {
 
     const { contacts, filteredContacts } = useContext(ContactContext)
+    const { showModalEditContact } = useContext(UserContext)
 
     if (filteredContacts.length === 0){
         if (contacts.length > 0) {
@@ -21,7 +26,7 @@ export const Dashboard = () => {
                     <StyledContactsList>
                     {contacts.map((e) => {
                         return (
-                            <li key={e.id}>
+                            <li key={e.id} onClick={() => showModalEditContact()}>
                                 <IoMdContacts size={50} />
                                 <StyledContactInfo>
                                     <p>{e.name}</p>
@@ -39,6 +44,9 @@ export const Dashboard = () => {
                     })}
                     </StyledContactsList>
                     </StyledContactsContainer>
+                    <ModalCreateContact />
+                    <ModalEditContact />
+                    <ModalEditProfile />
                 </>
             )
         }else {
@@ -58,7 +66,7 @@ export const Dashboard = () => {
                 <StyledContactsList>
                 {filteredContacts.map((e) => {
                     return (
-                        <li key={e.id}>
+                        <li key={e.id} onClick={() => showModalEditContact()}>
                             <IoMdContacts size={50} />
                             <StyledContactInfo>
                                 <p>{e.name}</p>
@@ -76,6 +84,9 @@ export const Dashboard = () => {
                 })}
                 </StyledContactsList>
                 </StyledContactsContainer>
+                <ModalCreateContact />
+                <ModalEditContact />
+                <ModalEditProfile />
             </>
         )
     }

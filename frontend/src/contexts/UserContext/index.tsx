@@ -11,6 +11,9 @@ export const UserProvider = ({children}: IUserProps) => {
     const [id, setId] = useState<IUserId | null>(null)
     const [profile, setProfile] = useState<IUser | null>(null)
     const [loading, setLoading] = useState(true)
+    const [classModalCreactContact, setClassModalCreactContact] = useState<string>("");
+    const [classModalEditContact, setClassModalEditContact] = useState<string>("");
+    const [classModalEditProfile, setClassModalEditProfile] = useState<string>("");
     const navigate = useNavigate()
 
     const saveLocalStorage = (token: string, id: string) => {
@@ -51,11 +54,35 @@ export const UserProvider = ({children}: IUserProps) => {
         }
       };
 
-    const Logout = () => {
+  const Logout = () => {
       localStorage.clear();
       setId(null);
       setProfile(null)
-    };
+  };
+
+  const showModalCreateContact = () => {
+    setClassModalCreactContact("show");
+  };
+
+  const closeModalCreateContact = () => {
+    setClassModalCreactContact("");
+  };
+
+  const showModalEditContact = () => {
+    setClassModalEditContact("show");
+  };
+
+  const closeModalEditContact = () => {
+    setClassModalEditContact("");
+  };
+
+  const showModalEditProfile = () => {
+    setClassModalEditProfile("show");
+  };
+
+  const closeModalEditProfile = () => {
+    setClassModalEditProfile("");
+  };
 
     useEffect(() => {
       const getUserProfile = async () => {
@@ -81,7 +108,7 @@ export const UserProvider = ({children}: IUserProps) => {
     }, [id])
 
     return (
-        <UserContext.Provider value={{id, setId, loading, setLoading, saveLocalStorage, registerFunction,  loginFunction, profile, Logout}}>
+        <UserContext.Provider value={{id, setId, loading, setLoading, saveLocalStorage, registerFunction,  loginFunction, profile, Logout, showModalCreateContact, closeModalCreateContact, showModalEditContact, closeModalEditContact, showModalEditProfile, closeModalEditProfile, classModalCreactContact, classModalEditContact, classModalEditProfile}}>
             {children}
         </UserContext.Provider>
     )

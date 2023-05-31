@@ -7,7 +7,7 @@ import { StyledButtonProfile } from "../../styles/buttons";
 import { SlLogout } from 'react-icons/sl'
 
 export const UserProfile = () => {
-    const { profile, Logout } = useContext(UserContext);
+    const { profile, Logout, showModalEditProfile } = useContext(UserContext);
 
     return (
         <StyledProfileInfo>
@@ -19,7 +19,7 @@ export const UserProfile = () => {
                 <h1>{profile?.name}</h1>
                 <h4>{profile?.email}</h4>
                 <h4>{profile?.phone}</h4>
-                <StyledButtonProfile><FaUserEdit /></StyledButtonProfile>
+                <StyledButtonProfile onClick={() => showModalEditProfile()}><FaUserEdit /></StyledButtonProfile>
             </div>
         </StyledProfileInfo>
         )

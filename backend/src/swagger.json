@@ -1,0 +1,552 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Desafio Fullstack",
+        "description": "Essa API tem com objetivo manipular a criação de usuários e cadastrar contatos destes.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/users": {
+            "post": {
+                "summary": "Cadastro de novo usuário",
+                "description": "Essa rota irá cadastrar um novo usuário",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "name": "João Paulo",
+                                        "email": "joaopaulo@mail.com",
+                                        "phone": "11111111111",
+                                        "password": "1234"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "409": {
+                        "description": "Email already exists!"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listagem de todos os usuários",
+                "description": "Essa rota irá retornar todos os usuários cadastrados",
+                "tags": ["Users"],
+                "security": [{ "bearerAuth": []}],
+                "responses": {
+                    "401": {
+                        "description": ""
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "$ref": "#/components/schemas/UsersResponseArray"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "summary": "Listagem de apenas um usuário",
+                "description": "Essa rota irá retornar um usuário cadastrado",
+                "tags": ["Users"],
+                "security": [{ "bearerAuth": []}],
+                "responses": {
+                    "401": {
+                        "description": "Invalid Token!"
+                    },
+                    "403": {
+                        "description": "You do not have permission!"
+                    },
+                    "404": {
+                        "description": "User not found!"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Atualização de apenas um usuário",
+                "description": "Essa rota irá atualizar os dados de um usuário cadastrado",
+                "tags": ["Users"],
+                "security": [{ "bearerAuth": []}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "name": "João Paulo",
+                                        "email": "joaopaulo@mail.com",
+                                        "phone": "11111111111",
+                                        "password": "1234"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Invalid Token!"
+                    },
+                    "403": {
+                        "description": "You do not have permission!"
+                    },
+                    "404": {
+                        "description": "User not found!"
+                    },
+                    "409": {
+                        "description": "Email already exists!"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deleção de apenas um usuário",
+                "description": "Essa rota irá excluir um usuário cadastrado",
+                "tags": ["Users"],
+                "security": [{ "bearerAuth": []}],
+                "responses": {
+                    "401": {
+                        "description": "Invalid Token!"
+                    },
+                    "403": {
+                        "description": "You do not have permission!"
+                    },
+                    "404": {
+                        "description": "User not found!"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/contacts": {
+            "post": {
+                "summary": "Cadastro de novo contato",
+                "description": "Essa rota irá cadastrar um novo contato",
+                "tags": ["Contacts"],
+                "security": [{ "bearerAuth": []}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Contact"
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "name": "João Paulo",
+                                        "email": "joaopaulo@mail.com",
+                                        "phone": "11111111111",
+                                        "password": "1234"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Invalid Token!"
+                    },
+                    "409": {
+                        "description": "Email already exists!"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/ContactResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listagem de todos os contatos",
+                "description": "Essa rota irá retornar todos os contatos cadastrados",
+                "tags": ["Contacts"],
+                "security": [{ "bearerAuth": []}],
+                "responses": {
+                    "401": {
+                        "description": "Invalid Token!"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "$ref": "#/components/schemas/ContactsResponseArray"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "contacts/{id}": {
+            "get": {
+                "summary": "Listagem de apenas um contato",
+                "description": "Essa rota irá retornar um contato cadastrado",
+                "tags": ["Contacts"],
+                "security": [{ "bearerAuth": []}],
+                "responses": {
+                    "401": {
+                        "description": "Invalid Token!"
+                    },
+                    "403": {
+                        "description": "You do not have permission!"
+                    },
+                    "404": {
+                        "description": "Contact not found!"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/ContactResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Atualização de apenas um contato",
+                "description": "Essa rota irá atualizar os dados de um contato cadastrado",
+                "tags": ["Contacts"],
+                "security": [{ "bearerAuth": []}],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Contact"
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "name": "João Paulo",
+                                        "email": "joaopaulo@mail.com",
+                                        "phone": "11111111111",
+                                        "password": "1234"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Invalid Token!"
+                    },
+                    "403": {
+                        "description": "You do not have permission!"
+                    },
+                    "404": {
+                        "description": "Contact not found!"
+                    },
+                    "409": {
+                        "description": "Email already exists!"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deleção de apenas um usuário",
+                "description": "Essa rota irá excluir um usuário cadastrado",
+                "tags": ["Contacts"],
+                "security": [{ "bearerAuth": []}],
+                "responses": {
+                    "401": {
+                        "description": "Invalid Token!"
+                    },
+                    "403": {
+                        "description": "You do not have permission!"
+                    },
+                    "404": {
+                        "description": "Contact not found!"
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "login": {
+            "post": {
+                "summary": "Realizar login na aplicação",
+                "description": "Essa rota irá realizar login do usuário na aplicação",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "name": "João Paulo",
+                                        "email": "joaopaulo@mail.com",
+                                        "phone": "11111111111",
+                                        "password": "1234"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "409": {
+                        "description": "Email already exists!"
+                    },
+                    "400": {
+                        "description": ""
+                    },
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/LoginResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Contact": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "UserResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ContactResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "UsersResponseArray": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string"
+                        },
+                        "phone": {
+                            "type": "string"
+                        },
+                        "password": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "ContactsResponseArray": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string"
+                        },
+                        "phone": {
+                            "type": "string"
+                        },
+                        "password": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "LoginRequest": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "LoginResponse": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}

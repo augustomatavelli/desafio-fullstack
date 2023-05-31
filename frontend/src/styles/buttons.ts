@@ -43,3 +43,14 @@ export const StyledButtonProfile = styled.button`
     color: blue;
   }
 `
+
+export const StyledCloseModal = styled.button`
+  background-color: transparent;
+  color: var(--color-grey-300);
+  font-size: 3rem;
+  border: none;
+
+  &:hover {
+    color: black;
+  }
+`;
