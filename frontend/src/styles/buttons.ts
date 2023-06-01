@@ -15,6 +15,21 @@ export const StyledButtonForm = styled.button`
   }
 `;
 
+export const StyledDeleteButtonForm = styled.button`
+  background-color: var(--color-error);
+  padding: 1.25rem;
+  border-radius: 8px;
+  color: var(--color-grey-0);
+  transition: 0.4s;
+  border: none;
+  width: 100%;
+  margin: 0.5rem auto;
+
+  &:hover {
+    background-color: var(--color-secondary);
+  }
+`;
+
 export const StyledButtonCreateContact = styled.button`
   display: flex;
   justify-content: center;

@@ -35,7 +35,7 @@ export const UserProvider = ({children}: IUserProps) => {
         } finally {
           setLoading(false);
         }
-      };
+    };
 
     const loginFunction = async (data: ILoginUser) => {
         try {
@@ -52,37 +52,41 @@ export const UserProvider = ({children}: IUserProps) => {
         } finally {
           setLoading(false);
         }
-      };
+    };
+    
+    const editProfileFunction = async () => {
 
-  const Logout = () => {
-      localStorage.clear();
-      setId(null);
-      setProfile(null)
-  };
+    }
 
-  const showModalCreateContact = () => {
-    setClassModalCreactContact("show");
-  };
+    const Logout = () => {
+        localStorage.clear();
+        setId(null);
+        setProfile(null)
+    };
 
-  const closeModalCreateContact = () => {
-    setClassModalCreactContact("");
-  };
+    const showModalCreateContact = () => {
+      setClassModalCreactContact("show");
+    };
 
-  const showModalEditContact = () => {
-    setClassModalEditContact("show");
-  };
+    const closeModalCreateContact = () => {
+      setClassModalCreactContact("");
+    };
 
-  const closeModalEditContact = () => {
-    setClassModalEditContact("");
-  };
+    const showModalEditContact = () => {
+      setClassModalEditContact("show");
+    };
 
-  const showModalEditProfile = () => {
-    setClassModalEditProfile("show");
-  };
+    const closeModalEditContact = () => {
+      setClassModalEditContact("");
+    };
 
-  const closeModalEditProfile = () => {
-    setClassModalEditProfile("");
-  };
+    const showModalEditProfile = () => {
+      setClassModalEditProfile("show");
+    };
+
+    const closeModalEditProfile = () => {
+      setClassModalEditProfile("");
+    };
 
     useEffect(() => {
       const getUserProfile = async () => {

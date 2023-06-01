@@ -12,6 +12,14 @@ export const ContactProvider = ({children}: IContactProps) => {
     const [filteredContacts, setFilteredContacts] = useState<IContact[] | []>([]);
     const { setLoading, Logout } = useContext(UserContext);
 
+    const editContactFunction = async () => {
+
+    }
+
+    const deleteContactFunction = async () => {
+
+    }
+
     useEffect(() => {
         async function getContacts() {
           const token = localStorage.getItem("@TOKEN") as string;

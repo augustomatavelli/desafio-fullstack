@@ -26,14 +26,19 @@ export const ModalBox = styled.div`
   gap: 4rem;
   border-radius: 8px;
 
-  h2 {
-    color: var(--color-primary);
-  }
-
   div {
     display: flex;
     width: 100%;
     justify-content: space-between;
     align-items: center;
+  }
+
+  div div {
+    display: flex;
+    justify-content: center;
+  }
+
+  div div h2 {
+    color: var(--color-primary);
   }
 `;
