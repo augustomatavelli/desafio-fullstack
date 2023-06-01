@@ -15,7 +15,6 @@ export const listContactsOfUserServices = async (user: User | null): Promise<TAl
             contacts: true
         }
     })
-    console.log(allContacts)
 
     const contacts = allContactSerializerResponse.parse(allContacts?.contacts)
 

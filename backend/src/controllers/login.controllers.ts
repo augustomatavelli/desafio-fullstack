@@ -4,10 +4,11 @@ import { loginService } from "../services/login/login.services"
 
 export const loginController = async (req: Request, res: Response): Promise<Response> => {
     const loginData: TLogin = req.body
-    const token = await loginService(loginData)
+    const response = await loginService(loginData)
 
     return res.json({
-        token: token
+        token: response.token,
+        id: response.id
     })
 
 }

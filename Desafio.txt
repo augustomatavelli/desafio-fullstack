@@ -1,0 +1,29 @@
+Você deverá criar um cadastro de clientes que poderá conter muitos contatos associados. Depois deste processo deverá ter um relatório em tela, ou PDF que mostre dados do cliente e os contatos vinculados a este cliente.
+
+1. Para cadastro do cliente é necessário, no mínimo, conter os seguintes campos:
+nome completo
+email
+telefone
+data de registro (data em que o cliente foi registrado)
+
+2. Para cadastrar os contatos dos clientes deve ter, no mínimo, os seguintes campos:
+nome completo
+e-mail
+telefone
+data de registro (data em que o cliente cadastrou o contato)
+
+3. Tanto os clientes quanto os contatos devem ter as operações básicas de um CRUD;
+4. Um cliente poderá ter mais de um contato vinculado a ele;
+5. Um relatório (podendo ser em tela ou exportado em pdf) que mostre o cliente e seus contatos.
+
+
+-----Necessário:
+Ter uma documentação clara do projeto;
+Apresentar telas bonitas, porém, preferimos o processo funcional e fluido;
+Cobertura de testes (extra);
+Autenticação e autorização;
+Ser simples de configurar e rodar, funcionando em ambiente compatível com Unix(Linux ou Mac OS X).
+
+----- Diferenciais:
+Estar dockerizado;
+Cadastrar mais de 1 (um) email e de 1 (um) telefone para cada cliente e/ou contato.

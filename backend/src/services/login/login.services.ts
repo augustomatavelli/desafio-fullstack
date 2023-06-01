@@ -6,7 +6,7 @@ import { AppError } from "../../errors";
 import { compare } from "bcryptjs";
 import jwt from 'jsonwebtoken';
 
-export const loginService = async (loginData: TLogin): Promise<string> => {
+export const loginService = async (loginData: TLogin): Promise<{id: string, token: string}> => {
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
 
     const user: User | null = await userRepository.findOneBy({
@@ -31,5 +31,5 @@ export const loginService = async (loginData: TLogin): Promise<string> => {
             subject: user?.id
         }
         )
-    return token
+    return {id: user.id, token: token}
 }
