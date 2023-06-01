@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { toast } from "react-toastify";
-import { ILoginUser, IRegisterUser, IUserProps, IUserProviderData, IUser, IUserId } from "./type";
+import { ILoginUser, IRegisterUser, IUserProps, IUserProviderData, IUser, IUserId, IEditUser } from "./type";
 
 export const UserContext = createContext({} as IUserProviderData)
 
@@ -53,9 +53,20 @@ export const UserProvider = ({children}: IUserProps) => {
           setLoading(false);
         }
     };
-    
-    const editProfileFunction = async () => {
 
+    const editProfileFunction = async (data: IEditUser) => {
+      try {
+        const userId = localStorage.getItem("@USERID") as string
+        await api.patch(`/users/${userId}`, data)
+        toast.success("Atualizando dados ...")
+        setTimeout(() => {
+          closeModalEditProfile()
+        }, 3000)
+      } catch (error) {
+        toast.error("Ops...algo deu errado!")
+      } finally {
+        setLoading(false)
+      }
     }
 
     const Logout = () => {
@@ -72,11 +83,13 @@ export const UserProvider = ({children}: IUserProps) => {
       setClassModalCreactContact("");
     };
 
-    const showModalEditContact = () => {
+    const showModalEditContact = (id: string) => {
+      localStorage.setItem("@CONTACTID", id)
       setClassModalEditContact("show");
     };
 
     const closeModalEditContact = () => {
+      localStorage.setItem("@CONTACTID", "")
       setClassModalEditContact("");
     };
 
@@ -112,7 +125,7 @@ export const UserProvider = ({children}: IUserProps) => {
     }, [id])
 
     return (
-        <UserContext.Provider value={{id, setId, loading, setLoading, saveLocalStorage, registerFunction,  loginFunction, profile, Logout, showModalCreateContact, closeModalCreateContact, showModalEditContact, closeModalEditContact, showModalEditProfile, closeModalEditProfile, classModalCreactContact, classModalEditContact, classModalEditProfile}}>
+        <UserContext.Provider value={{id, setId, loading, setLoading, saveLocalStorage, registerFunction,  loginFunction, profile, Logout, showModalCreateContact, closeModalCreateContact, showModalEditContact, closeModalEditContact, showModalEditProfile, closeModalEditProfile, classModalCreactContact, classModalEditContact, classModalEditProfile, editProfileFunction}}>
             {children}
         </UserContext.Provider>
     )

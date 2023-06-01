@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { IContact, IContactProps, IContactProviderData } from "./type";
+import { IContact, IContactProps, IContactProviderData, IEditContact, IRegisterContact } from "./type";
 import { UserContext } from "../UserContext";
 import api from "../../services/api";
 import { toast } from "react-toastify";
@@ -10,20 +10,55 @@ export const ContactProvider = ({children}: IContactProps) => {
 
     const [contacts, setContacts] = useState<IContact[] | []>([])
     const [filteredContacts, setFilteredContacts] = useState<IContact[] | []>([]);
-    const { setLoading, Logout } = useContext(UserContext);
+    const { setLoading, Logout, closeModalEditContact, closeModalCreateContact } = useContext(UserContext);
 
-    const editContactFunction = async () => {
+    const createContactFunction = async (data: IRegisterContact) => {
+      try {
+        await api.post('/contacts', data).then((res) => res.data)
+        toast.success("Cadastrando ...")
+        setTimeout(() => {
+          closeModalCreateContact()
+        }, 3000)
+      } catch (error) {
+        toast.error("Ops...algo deu errado!")
+      } finally {
+        setLoading(false)
+      }
+    }
 
+    const editContactFunction = async (data: IEditContact) => {
+      const contactId = localStorage.getItem("@CONTACTID")
+      try {
+        await api.patch(`/contacts/${contactId}`, data).then((res) => res.data)
+        toast.success("Alterando ..." )
+        setTimeout(() => {
+          closeModalEditContact()
+        }, 3000)
+      } catch (error) {
+        toast.error("Ops...algo deu errado!")
+      } finally {
+        setLoading(false)
+      }
     }
 
     const deleteContactFunction = async () => {
-
+      const contactId = localStorage.getItem("@CONTACTID")
+      try {
+        await api.delete(`/contacts/${contactId}`)
+        toast.success("Excluindo contato ...")
+        setTimeout(() => {
+          closeModalEditContact()
+        }, 3000)
+      } catch (error) {
+        toast.error("Ops...algo deu errado!")
+      } finally {
+        setLoading(false)
+      }
     }
 
     useEffect(() => {
         async function getContacts() {
           const token = localStorage.getItem("@TOKEN") as string;
-
           if (!token) {
             setLoading(false);
             return;
@@ -42,10 +77,10 @@ export const ContactProvider = ({children}: IContactProps) => {
           }
         }
         getContacts();
-      }, [setLoading, Logout]);
+      }, [setLoading, Logout, contacts]);
 
     return (
-        <ContactContext.Provider value={{contacts, setFilteredContacts, filteredContacts}}>
+        <ContactContext.Provider value={{contacts, setFilteredContacts, filteredContacts, createContactFunction, editContactFunction, deleteContactFunction}}>
             {children}
         </ContactContext.Provider>
     )

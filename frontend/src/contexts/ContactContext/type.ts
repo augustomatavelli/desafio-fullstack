@@ -7,7 +7,10 @@ export interface IContactProps {
 export interface IContactProviderData {
     contacts: IContact[] | [];
     setFilteredContacts: React.Dispatch<React.SetStateAction<IContact[] | []>>;
-    filteredContacts: IContact[] | []
+    filteredContacts: IContact[] | [];
+    createContactFunction: (data: IRegisterContact) => Promise<void>;
+    editContactFunction: (data: IEditContact) => Promise<void>;
+    deleteContactFunction: () => Promise<void>;
 }
 
 export interface IContact {
@@ -15,4 +18,16 @@ export interface IContact {
     name: string;
     email: string,
     phone: string,
+}
+
+export interface IRegisterContact {
+    name: string;
+    email: string;
+    phone: string,
+}
+
+export interface IEditContact {
+    name?: string;
+    email?: string;
+    phone?: string,
 }

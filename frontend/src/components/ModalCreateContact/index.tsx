@@ -8,10 +8,12 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { registerContactSerializer } from "../../pages/Dashboard/serializer"
 import { TRegisterContactData } from "../../pages/Dashboard/type"
+import { ContactContext } from "../../contexts/ContactContext"
 
 export const ModalCreateContact = () => {
 
     const { classModalCreactContact, closeModalCreateContact } = useContext(UserContext)
+    const { createContactFunction } = useContext(ContactContext)
 
     const { register, handleSubmit, formState:{ errors } } = useForm<TRegisterContactData>({
         mode: "onChange",
@@ -27,7 +29,7 @@ export const ModalCreateContact = () => {
                     </div>
                 <StyledCloseModal onClick={() => closeModalCreateContact()}>X</StyledCloseModal>
                 </div>
-                <StyledContainerModal>
+                <StyledContainerModal onSubmit={handleSubmit(createContactFunction)}>
                     <label htmlFor="name">Nome</label>
                     <StyledModalInputs type='name' id='name' placeholder="Digite o nome do seu contato..." {...register('name')}/>
                     {errors.name?.message && <p>{errors.name.message}</p>}

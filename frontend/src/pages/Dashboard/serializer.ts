@@ -8,6 +8,6 @@ export const registerContactSerializer = z.object({
 
 export const editContactSerializer = z.object({
     name: z.string().optional(),
-    email: z.string().email().optional(),
+    email: z.string().email({message: 'O email é inválido'}).optional(),
     phone: z.string().optional(),
 })

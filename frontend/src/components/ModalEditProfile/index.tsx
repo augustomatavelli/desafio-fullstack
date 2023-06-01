@@ -11,7 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 
 export const ModalEditProfile = () => {
 
-    const { classModalEditProfile, closeModalEditProfile } = useContext(UserContext)
+    const { classModalEditProfile, closeModalEditProfile, editProfileFunction } = useContext(UserContext)
 
     const { register, handleSubmit, formState:{ errors } } = useForm<TEditContactData>({
         mode: "onChange",
@@ -27,8 +27,8 @@ export const ModalEditProfile = () => {
                     </div>
                 <StyledCloseModal onClick={() => closeModalEditProfile()}>X</StyledCloseModal>
                 </div>
-                <StyledContainerModal>
-                <label htmlFor="name">Nome</label>
+                <StyledContainerModal onSubmit={handleSubmit(editProfileFunction)}>
+                    <label htmlFor="name">Nome</label>
                     <StyledModalInputs type='name' id='name' placeholder="Digite o nome do seu contato..." {...register('name')}/>
                     {errors.name?.message && <p>{errors.name.message}</p>}
                     <label htmlFor="email">Email</label>

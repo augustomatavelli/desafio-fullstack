@@ -38,7 +38,7 @@ export const StyledLoginForm = styled.form`
 
   div a {
     background-color: #0B6E4F;
-    padding: 0.75rem;
+    padding: 1.25rem;
     border-radius: 8px;
     color: var(--color-grey-0);
     transition: 0.4s;

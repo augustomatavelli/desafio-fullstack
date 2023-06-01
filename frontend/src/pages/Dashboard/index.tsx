@@ -26,7 +26,8 @@ export const Dashboard = () => {
                     <StyledContactsList>
                     {contacts.map((e) => {
                         return (
-                            <li key={e.id} onClick={() => showModalEditContact()}>
+                            <>
+                            <li key={e.id} onClick={() => showModalEditContact(`${e.id}`)}>
                                 <IoMdContacts size={50} />
                                 <StyledContactInfo>
                                     <p>{e.name}</p>
@@ -40,8 +41,10 @@ export const Dashboard = () => {
                                     </div>
                                 </StyledContactInfo>
                             </li>
+                            </>
                         )
-                    })}
+                    })
+                    }
                     </StyledContactsList>
                     </StyledContactsContainer>
                     <ModalCreateContact />
@@ -66,7 +69,7 @@ export const Dashboard = () => {
                 <StyledContactsList>
                 {filteredContacts.map((e) => {
                     return (
-                        <li key={e.id} onClick={() => showModalEditContact()}>
+                        <li key={e.id} onClick={() => showModalEditContact(`${e.id}`)}>
                             <IoMdContacts size={50} />
                             <StyledContactInfo>
                                 <p>{e.name}</p>

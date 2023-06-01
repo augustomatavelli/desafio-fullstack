@@ -3,10 +3,7 @@ import { Link } from "react-router-dom";
 export const LoginToRegister = () => {
   return (
     <div>
-      <span>
-        Crie sua conta!
-      </span>
-      <Link to="/register">Cadastro</Link>
+      <Link to="/register">Crie sua conta!</Link>
     </div>
   );
 };

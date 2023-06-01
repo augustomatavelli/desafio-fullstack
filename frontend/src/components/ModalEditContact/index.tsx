@@ -8,10 +8,12 @@ import { useForm } from "react-hook-form"
 import { TEditContactData } from "../../pages/Dashboard/type"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { editContactSerializer } from "../../pages/Dashboard/serializer"
+import { ContactContext } from "../../contexts/ContactContext"
 
 export const ModalEditContact = () => {
 
     const { classModalEditContact, closeModalEditContact } = useContext(UserContext)
+    const { editContactFunction, deleteContactFunction } = useContext(ContactContext)
 
     const { register, handleSubmit, formState:{ errors } } = useForm<TEditContactData>({
         mode: "onChange",
@@ -27,7 +29,7 @@ export const ModalEditContact = () => {
                     </div>
                 <StyledCloseModal onClick={() => closeModalEditContact()}>X</StyledCloseModal>
                 </div>
-                <StyledContainerModal>
+                <StyledContainerModal onSubmit={handleSubmit(editContactFunction)}>
                     <label htmlFor="name">Nome</label>
                     <StyledModalInputs type='name' id='name' placeholder="Digite o nome do seu contato..." {...register('name')}/>
                     {errors.name?.message && <p>{errors.name.message}</p>}
@@ -39,7 +41,7 @@ export const ModalEditContact = () => {
                     {errors.phone?.message && <p>{errors.phone.message}</p>}
                     <div>
                         <StyledButtonForm type="submit">Salvar</StyledButtonForm>
-                        <StyledDeleteButtonForm type="submit">Excluir</StyledDeleteButtonForm>
+                        <StyledDeleteButtonForm onClick={deleteContactFunction}>Excluir</StyledDeleteButtonForm>
                     </div>
                 </StyledContainerModal>
             </ModalBox>

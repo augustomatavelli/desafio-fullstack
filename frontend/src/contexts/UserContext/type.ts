@@ -16,13 +16,14 @@ export interface IUserProviderData {
     Logout: () => void;
     showModalCreateContact: () => void;
     closeModalCreateContact: () => void;
-    showModalEditContact: () => void;
+    showModalEditContact: (id: string) => void;
     closeModalEditContact: () => void;
     showModalEditProfile: () => void;
     closeModalEditProfile: () => void;
-    classModalCreactContact: string,
-    classModalEditContact: string,
-    classModalEditProfile: string,
+    classModalCreactContact: string;
+    classModalEditContact: string;
+    classModalEditProfile: string;
+    editProfileFunction: (data: IEditUser) => Promise<void>
 }
 
 export interface IUserId {
@@ -37,14 +38,20 @@ export interface IUser {
     password: string;
 }
 
-  export interface IRegisterUser {
-    name: string;
-    email: string;
-    phone: string,
-    password: string;
+export interface IRegisterUser {
+  name: string;
+  email: string;
+  phone: string,
+  password: string;
 }
 
-  export interface ILoginUser {
-    email: string;
-    password: string;
-  }
+export interface IEditUser {
+  name?: string;
+  email?: string;
+  phone?: string,
+}
+
+export interface ILoginUser {
+  email: string;
+  password: string;
+}
