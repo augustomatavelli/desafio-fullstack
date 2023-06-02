@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { UserContext } from "../../contexts/UserContext"
-import { StyledButtonForm, StyledCloseModal } from "../../styles/buttons"
+import { StyledButtonForm, StyledCloseModal, StyledDeleteButtonForm } from "../../styles/buttons"
 import { Modal, ModalBox } from "../Modal/styles"
 import { StyledContainerModal } from "../ModalCreateContact/style"
 import { StyledModalInputs } from "../../styles/inputs"
@@ -11,7 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 
 export const ModalEditProfile = () => {
 
-    const { classModalEditProfile, closeModalEditProfile, editProfileFunction } = useContext(UserContext)
+    const { classModalEditProfile, closeModalEditProfile, editProfileFunction, deleteProfileFunction } = useContext(UserContext)
 
     const { register, handleSubmit, formState:{ errors } } = useForm<TEditContactData>({
         mode: "onChange",
@@ -37,7 +37,10 @@ export const ModalEditProfile = () => {
                     <label htmlFor="phone">Telefone</label>
                     <StyledModalInputs type='phone' id='phone' placeholder="Digite o telefone do seu contato..." {...register('phone')} />
                     {errors.phone?.message && <p>{errors.phone.message}</p>}
-                    <StyledButtonForm type="submit">Salvar</StyledButtonForm>
+                    <div>
+                        <StyledButtonForm type="submit">Salvar</StyledButtonForm>
+                        <StyledDeleteButtonForm type="button" onClick={deleteProfileFunction}>Excluir</StyledDeleteButtonForm>
+                    </div>
                 </StyledContainerModal>
             </ModalBox>
         </Modal>

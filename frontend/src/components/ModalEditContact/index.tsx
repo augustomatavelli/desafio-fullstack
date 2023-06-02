@@ -41,7 +41,7 @@ export const ModalEditContact = () => {
                     {errors.phone?.message && <p>{errors.phone.message}</p>}
                     <div>
                         <StyledButtonForm type="submit">Salvar</StyledButtonForm>
-                        <StyledDeleteButtonForm onClick={deleteContactFunction}>Excluir</StyledDeleteButtonForm>
+                        <StyledDeleteButtonForm type="button" onClick={deleteContactFunction}>Excluir</StyledDeleteButtonForm>
                     </div>
                 </StyledContainerModal>
             </ModalBox>

@@ -66,10 +66,28 @@ export const UserProvider = ({children}: IUserProps) => {
       }
       try {
         const userId = localStorage.getItem("@USERID") as string
-        await api.patch(`/users/${userId}`, data)
+        const request = await api.patch(`/users/${userId}`, data)
+        const response = await request.data;
+        setProfile(response)
         toast.success("Atualizando dados ...")
         setTimeout(() => {
           closeModalEditProfile()
+        }, 3000)
+      } catch (error) {
+        toast.error("Ops...algo deu errado!")
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    const deleteProfileFunction = async () => {
+      const userId = localStorage.getItem("@USERID")
+      try {
+        await api.delete(`/users/${userId}`)
+        toast.success("Excluindo perfil ...")
+        setTimeout(() => {
+          closeModalEditProfile()
+          Logout()
         }, 3000)
       } catch (error) {
         toast.error("Ops...algo deu errado!")
@@ -131,10 +149,10 @@ export const UserProvider = ({children}: IUserProps) => {
         }
       }
       getUserProfile()
-    }, [id, profile])
+    }, [id])
 
     return (
-        <UserContext.Provider value={{id, setId, loading, setLoading, saveLocalStorage, registerFunction,  loginFunction, profile, Logout, showModalCreateContact, closeModalCreateContact, showModalEditContact, closeModalEditContact, showModalEditProfile, closeModalEditProfile, classModalCreactContact, classModalEditContact, classModalEditProfile, editProfileFunction}}>
+        <UserContext.Provider value={{id, setId, loading, setLoading, saveLocalStorage, registerFunction,  loginFunction, profile, Logout, showModalCreateContact, closeModalCreateContact, showModalEditContact, closeModalEditContact, showModalEditProfile, closeModalEditProfile, classModalCreactContact, classModalEditContact, classModalEditProfile, editProfileFunction, deleteProfileFunction}}>
             {children}
         </UserContext.Provider>
     )

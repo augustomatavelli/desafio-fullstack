@@ -23,7 +23,8 @@ export interface IUserProviderData {
     classModalCreactContact: string;
     classModalEditContact: string;
     classModalEditProfile: string;
-    editProfileFunction: (data: IEditUser) => Promise<void>
+    editProfileFunction: (data: IEditUser) => Promise<void>;
+    deleteProfileFunction: () => Promise<void>
 }
 
 export interface IUserId {

@@ -86,7 +86,7 @@ export const ContactProvider = ({children}: IContactProps) => {
           }
         }
         getContacts();
-    }, [setLoading, Logout, contacts]);
+    }, [setLoading, Logout]);
 
     return (
         <ContactContext.Provider value={{contacts, setFilteredContacts, filteredContacts, createContactFunction, editContactFunction, deleteContactFunction}}>
