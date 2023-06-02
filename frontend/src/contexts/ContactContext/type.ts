@@ -9,7 +9,7 @@ export interface IContactProviderData {
     setFilteredContacts: React.Dispatch<React.SetStateAction<IContact[] | []>>;
     filteredContacts: IContact[] | [];
     createContactFunction: (data: IRegisterContact) => Promise<void>;
-    editContactFunction: (data: IEditContact) => Promise<void>;
+    editContactFunction: (data: IEditContact) => Promise<void>
     deleteContactFunction: () => Promise<void>;
 }
 

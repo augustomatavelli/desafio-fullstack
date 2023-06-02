@@ -28,6 +28,15 @@ export const ContactProvider = ({children}: IContactProps) => {
 
     const editContactFunction = async (data: IEditContact) => {
       const contactId = localStorage.getItem("@CONTACTID")
+      if(data.name === ""){
+        delete data.name
+      }
+      if(data.email === ""){
+        delete data.email
+      }
+      if(data.phone === ""){
+        delete data.phone
+      }
       try {
         await api.patch(`/contacts/${contactId}`, data).then((res) => res.data)
         toast.success("Alterando ..." )
@@ -77,7 +86,7 @@ export const ContactProvider = ({children}: IContactProps) => {
           }
         }
         getContacts();
-      }, [setLoading, Logout, contacts]);
+    }, [setLoading, Logout, contacts]);
 
     return (
         <ContactContext.Provider value={{contacts, setFilteredContacts, filteredContacts, createContactFunction, editContactFunction, deleteContactFunction}}>

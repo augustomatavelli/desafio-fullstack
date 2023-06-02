@@ -55,6 +55,15 @@ export const UserProvider = ({children}: IUserProps) => {
     };
 
     const editProfileFunction = async (data: IEditUser) => {
+      if(data.name === ""){
+        delete data.name
+      }
+      if(data.email === ""){
+        delete data.email
+      }
+      if(data.phone === ""){
+        delete data.phone
+      }
       try {
         const userId = localStorage.getItem("@USERID") as string
         await api.patch(`/users/${userId}`, data)
@@ -122,7 +131,7 @@ export const UserProvider = ({children}: IUserProps) => {
         }
       }
       getUserProfile()
-    }, [id])
+    }, [id, profile])
 
     return (
         <UserContext.Provider value={{id, setId, loading, setLoading, saveLocalStorage, registerFunction,  loginFunction, profile, Logout, showModalCreateContact, closeModalCreateContact, showModalEditContact, closeModalEditContact, showModalEditProfile, closeModalEditProfile, classModalCreactContact, classModalEditContact, classModalEditProfile, editProfileFunction}}>
