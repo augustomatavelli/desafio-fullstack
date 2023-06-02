@@ -57,6 +57,9 @@ export const Dashboard = () => {
                 <>
                     <Header />
                     <NoContactsMessage />
+                    <ModalCreateContact />
+                    <ModalEditContact />
+                    <ModalEditProfile />
                 </>
             )
         }
